@@ -1,0 +1,53 @@
+server:
+  port: 9000
+
+logging:
+  level:
+    org.springframework.security: trace
+
+#spring:
+#  security:
+#    oauth2:
+#      authenticationserver:
+#        client:
+#          oidc-client:
+#            registration:
+#              client-id: "oidc-client"
+#              client-secret: "{noop}secret"
+#              client-authentication-methods:
+#                - "client_secret_basic"
+#              authorization-grant-types:
+#                - "authorization_code"
+#                - "refresh_token"
+#              redirect_uris:
+#                - "http://localhost:8080/login/auth2/code/oidc-client"
+#              post-logout-redirect-uris:
+#                - "http://localhost:8080/"
+#              scopes:
+#                - "openid"
+#                - "profile"
+#              require-authorization-consent: true
+
+#okta:
+#  base-url: ${OKTA_BASE_URL}
+
+#spring:
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          my-client:
+#            provider: okta
+#            client-id: ${OKTA_CLIENT_ID}
+#            client-secret: ${OKTA_CLIENT_SECRET}
+#            scope:
+#              - openid
+#              - profile
+#              - email
+#        provider:
+#          okta:
+#            authorization-uri: ${okta.base-url}/oauth2/v1/authorize
+#            token-uri: ${okta.base-url}/oauth2/v1/token
+#            user-info-uri: ${okta.base-url}/oauth2/v1/userinfo
+#            jwk-set-uri: ${okta.base-url}/oauth2/v1/keys
+#            user-name-attribute: sub
