@@ -1,0 +1,43 @@
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.security: trace
+    org.springframework.security.oauth2: trace
+
+spring:
+  thymeleaf:
+    cache: false
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: login-app
+            authorization-grant-type: authorization_code
+            client-secret: NyhqNhdNysTtkeRUhHSW7FkDmcfuuYYm
+            redirect-uri: "http://localhost:8080/login/oauth2/code/{registrationId}"
+            scope: openid
+            client-name: customer-client
+            provider: keycloak
+          keycloak-client-credentials:
+            client-id: login-app
+            client-secret: NyhqNhdNysTtkeRUhHSW7FkDmcfuuYYm
+            authorization-grant-type: client_credentials
+            client-authentication-method: client_secret_basic
+            client-name: customer-client
+            provider: keycloak
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:9080/realms/ProtocolSN
+            user-name-attribute: preferred_username
+      resource-server:
+        jwt:
+          issuer: http://localhost:9080/realms/ProtocolSN
+          jwk-set-uri: http://localhost:9080/realms/ProtocolSN/protocol/openid-connect/certs
+
+cron:
+  base-uri: http://localhost:8070/cron
