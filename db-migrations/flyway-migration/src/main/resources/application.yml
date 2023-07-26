@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://host.docker.internal:5432/mydb
+    username: postgres
+    password: example
+
+flyway:
+  user: postgres
+  password: example
+  schemas: sample
+  url: jdbc:postgresql://db:15432/mydb
+  location: 'filesystem:db/migration'
+
+
+
+logging:
+  level:
+    root: INFO
