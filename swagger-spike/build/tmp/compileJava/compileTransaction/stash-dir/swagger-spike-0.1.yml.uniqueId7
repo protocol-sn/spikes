@@ -1,0 +1,153 @@
+openapi: 3.0.1
+info:
+  title: Swagger Spike
+  version: "0.1"
+paths:
+  /swagger-spike:
+    get:
+      operationId: index
+      responses:
+        "200":
+          description: index 200 response
+          content:
+            text/plain:
+              schema:
+                type: string
+  /swagger-spike/query:
+    get:
+      operationId: responseObj2
+      parameters:
+      - name: someVal
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: requiredVal
+        in: query
+        required: true
+        schema:
+          minLength: 1
+          type: string
+      - name: nullableInt
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: nullableDate
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+      responses:
+        "200":
+          description: responseObj2 200 response
+          content:
+            text/plain:
+              schema:
+                type: string
+  /swagger-spike/request-obj:
+    post:
+      operationId: requestObj
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SomeRequestObj"
+        required: true
+      responses:
+        "200":
+          description: requestObj 200 response
+          content:
+            application/json:
+              schema:
+                type: string
+  /swagger-spike/response-obj:
+    get:
+      operationId: responseObj
+      responses:
+        "200":
+          description: responseObj 200 response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SomeResponseObj"
+  /swagger-spike/secured:
+    get:
+      operationId: secured
+      responses:
+        "200":
+          description: secured 200 response
+          content:
+            text/plain:
+              schema:
+                type: string
+      security:
+      - basicAuthentication: []
+  /swagger-spike/{someVal}:
+    get:
+      operationId: responseObj2_1
+      parameters:
+      - name: someVal
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: responseObj2_1 200 response
+          content:
+            text/plain:
+              schema:
+                type: string
+components:
+  schemas:
+    SomeRequestObj:
+      required:
+      - nonBlankField
+      - nonNullDate
+      - nonNullField
+      - nullableField
+      type: object
+      properties:
+        nonNullField:
+          type: string
+        nullableField:
+          type: string
+        nonBlankField:
+          minLength: 1
+          type: string
+        nonNullDate:
+          type: string
+          format: date
+    SomeResponseObj:
+      required:
+      - nonBlankField
+      - nonEmptyArray
+      - nonNullField
+      - nonNullableInt
+      - nullableInt
+      type: object
+      properties:
+        nonBlankField:
+          minLength: 1
+          type: string
+        nonNullField:
+          type: string
+        nullableInt:
+          type: integer
+          format: int32
+        nonNullableInt:
+          type: integer
+          format: int32
+        nonEmptyArray:
+          maxItems: 10
+          minItems: 1
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    basicAuthentication:
+      type: http
+      scheme: basic

@@ -1,0 +1,24 @@
+#Tue May 14 23:43:12 UTC 2024
+#micronaut.router.static-resources.swagger.paths=classpath\:META-INF/swagger
+#micronaut.application.name=swagger-spike
+#micronaut.router.static-resources.swagger-ui.mapping=/swagger-ui/**
+#micronaut.router.static-resources.swagger-ui.paths=classpath\:META-INF/swagger/views/swagger-ui
+#micronaut.router.static-resources.swagger.mapping=/swagger/**
+
+micronaut:
+  application:
+    name: swagger-spike
+  router:
+    static-resources:
+      swagger:
+        paths: classpath:META-INF/swagger
+        mapping: /swagger/**
+      swagger-ui:
+        mapping: /swagger-ui/**
+        paths: classpath:META-INF/swagger/views/swagger-ui
+  security:
+    intercept-url-map:
+      - pattern: /swagger/**
+        access: isAnonymous()
+      - pattern: /swagger-ui/**
+        access: isAnonymous()
