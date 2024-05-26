@@ -1,0 +1,28 @@
+micronaut:
+  application:
+    name: spike-client-one
+  http:
+    services:
+      spike-client-two:
+        url: http://localhost:8082
+  server:
+    port: 8081
+  security:
+    oauth2:
+      clients:
+        keycloak:
+          client-id: spike-client-one
+          client-secret: 8TNcqzL2hA2J7yTZUs0r6LsyyI0JgjCw
+          grant-type: client_credentials
+          token:
+            url: http://localhost:9080/realms/spike-realm/protocol/openid-connect/token
+            auth-method: client_secret_post
+          client-credentials:
+            service-id-regex: spike-client-two
+            additional-request-params:
+              audience: http://localhost:8082/secured
+          openid:
+            issuer: http://localhost:9080/realms/spike-realm/
+    endpoints:
+      logout:
+        get-allowed: true
