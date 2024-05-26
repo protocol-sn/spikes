@@ -1,0 +1,19 @@
+micronaut:
+  application:
+    name: spike-client-two
+  server:
+    port: 8082
+  security:
+    token:
+      jwt:
+        signatures:
+          jwks:
+            keycloak:
+              url: http://localhost:9080/realms/spike-realm/protocol/openid-connect/certs
+    endpoints:
+      logout:
+        get-allowed: true
+
+logger:
+  levels:
+    io.micronaut.security: DEBUG
