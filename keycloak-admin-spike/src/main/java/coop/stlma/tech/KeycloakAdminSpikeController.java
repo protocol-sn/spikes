@@ -21,10 +21,6 @@ public class KeycloakAdminSpikeController {
     @Post(value = "/create-user", produces = MediaType.TEXT_PLAIN, consumes = MediaType.APPLICATION_JSON)
     public Mono<String> createUser(@Body UserRepresentation user) {
         return keycloakAdminClient.createUser("master", user)
-//                .then(Mono.fromCallable(() -> {
-//                    user.setEnabled(true);
-//                    keycloakAdminClient.updateUser("master", user)
-//                }));
                 .then(Mono.fromCallable(() -> "User created"));
     }
 
