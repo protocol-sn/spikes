@@ -1,0 +1,34 @@
+micronaut:
+  application:
+    name: keycloak-admin-spike
+  http:
+    services:
+      keycloak-admin:
+        url: http://localhost:9080
+  server:
+    port: 8080
+  security:
+    oauth2:
+      clients:
+        keycloak:
+          client-id: spike-client
+          client-secret: 44HYRsZd6sQJxp6xds0u7gUXb0RniOn9
+          grant-type: client_credentials
+          token:
+            url: http://localhost:9080/realms/master/protocol/openid-connect/token
+            auth-method: client_secret_post
+          client-credentials:
+            service-id-regex: keycloak-admin
+          openid:
+            issuer: http://localhost:9080/realms/master/
+    endpoints:
+      logout:
+        get-allowed: true
+
+
+my:
+  realm: master
+
+#logger:
+#  levels:
+#    io.micronaut: DEBUG
