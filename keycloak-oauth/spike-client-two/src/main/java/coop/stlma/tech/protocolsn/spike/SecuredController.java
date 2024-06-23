@@ -25,4 +25,10 @@ public class SecuredController {
     public String noRole() {
         return "hit no role endpoint!";
     }
+
+    @Get("/userEndpoint")
+    @Secured({"userRole"})
+    public String userEndpoint() {
+        return "hit user endpoint!";
+    }
 }

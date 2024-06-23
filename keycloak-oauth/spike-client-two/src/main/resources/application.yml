@@ -2,17 +2,26 @@ micronaut:
   application:
     name: spike-client-two
   server:
-    port: 8082
+    port: 8080
   security:
+#    oauth2:
+#      clients:
+#        keycloak:
+#          clientId: spike-client-two
+#          clientSecret: QkeQto2S845VtTAGS5CGcddsxojzUlTW
+#          grant-type: client_credentials
+#          openid:
+#            issuer: http://localhost:9080/realms/spike-realm
     token:
       jwt:
         signatures:
           jwks:
             keycloak:
-              url: http://localhost:9080/realms/spike-realm/protocol/openid-connect/certs
+              url: http://keycloak.psn.local/realms/spike-realm/protocol/openid-connect/certs
     endpoints:
       logout:
         get-allowed: true
+#    authentication: idtoken
 
 logger:
   levels:

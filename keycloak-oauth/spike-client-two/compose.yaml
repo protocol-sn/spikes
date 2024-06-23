@@ -1,0 +1,16 @@
+version: '1'
+
+services:
+  spike-two:
+    image: spike-two:latest
+    ports:
+      - 8082:8080
+    labels:
+      - "traefik.http.routers.spike-two.rule=Host(`spike-two.psn.local`)"
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
+    external: true

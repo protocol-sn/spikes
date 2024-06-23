@@ -1,0 +1,16 @@
+version: '1'
+
+services:
+  spike-one:
+    image: spike-one:latest
+    ports:
+      - 8081:8080
+    labels:
+      - "traefik.http.routers.spike-one.rule=Host(`spike-one.psn.local`)"
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
+    external: true
