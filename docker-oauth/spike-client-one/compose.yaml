@@ -1,0 +1,21 @@
+version: '1'
+
+services:
+  spike-one:
+    image: spike-client-one:latest
+    ports:
+      - 8081:8080
+    labels:
+      - "traefik.enabled=false"
+      - "traefik.http.routers.spike-one.rule=Host(`spike-one.localhost`)"
+    environment:
+      MICRONAUT_ENVIRONMENTS: docker
+    networks:
+      - proxy-network
+
+networks:
+  proxy-network:
+    driver: bridge
+    external: true
+
+

@@ -1,0 +1,19 @@
+version: '1'
+
+services:
+  spike-two:
+    image: spike-client-two:latest
+    ports:
+      - 8082:8080
+      - 5005:5005
+    labels:
+      - "traefik.enabled=false"
+      - "traefik.http.routers.spike-two.rule=Host(`spike-two.localhost`)"
+    networks:
+      - proxy-network
+
+networks:
+  proxy-network:
+    driver: bridge
+    name: proxy-network
+    external: true
