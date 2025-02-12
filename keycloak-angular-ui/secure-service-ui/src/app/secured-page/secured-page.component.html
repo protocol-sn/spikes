@@ -1,0 +1,17 @@
+<app-navigation></app-navigation>UnsecuredPageComponent
+<p>secured-page works!</p>
+<input type="button" (click)="doSpikeRoleCall()" value="Spike" />
+<br/>
+<app-response [body]="spikeBody" [code]="spikeCode"></app-response>
+<br/>
+<input type="button" (click)="doSpike2RoleCall()" value="Spike2" >
+<br/>
+<app-response [body]="spike2Body" [code]="spike2Code"></app-response>
+<br/>
+<input type="button" (click)="doNoRoleCall()" value="NoRole" >
+<br/>
+<app-response [body]="noRoleBody" [code]="noRoleCode"></app-response>
+<br/>
+<input type="button" (click)="doWorkaroundCall()" value="workaround" >
+<br/>
+<app-response [body]="workaroundBody" [code]="workaroundCode"></app-response>

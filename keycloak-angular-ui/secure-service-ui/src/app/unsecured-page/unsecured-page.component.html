@@ -1,0 +1,6 @@
+<app-navigation></app-navigation>
+<p>unsecured-page works!</p>
+
+<input type="button" (click)="doUnsecuredCall()" value="Unsecured"/>
+<br/>
+<app-response [body]="unsecuredBody" [code]="unsecuredCode"></app-response>
