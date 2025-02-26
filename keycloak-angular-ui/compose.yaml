@@ -19,7 +19,7 @@ services:
       - "KEYCLOAK_ADMIN_PASSWORD=admin"
     command: start-dev --import-realm
     volumes:
-      - ./spike-realm.json:/opt/keycloak/data/import/sampleRealm.json
+      - ./spike-realm.json:/opt/keycloak/data/import/spike-realm.json
   db:
     image: postgres
     restart: always
