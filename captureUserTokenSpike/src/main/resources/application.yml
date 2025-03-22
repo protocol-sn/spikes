@@ -1,0 +1,35 @@
+micronaut:
+  application:
+    name: captureUserTokenSpike
+  server:
+    port: 8080
+  security:
+    token:
+      jwt:
+        signatures:
+          jwks:
+            keycloak:
+              url: http://localhost:9080/realms/spike-realm/protocol/openid-connect/certs
+    oauth2:
+      clients:
+        local-keycloak:
+          client-id: spike-client
+          client-secret: spike-secret
+          openid:
+            issuer: http://localhost:9080/realms/spike-realm
+    endpoints:
+      logout:
+        get-allowed: true
+    authentication: idtoken
+
+logger:
+  levels:
+    io.micronaut.security: DEBUG
+    io.micronaut.http: DEBUG
+
+jpa:
+  default:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: none
