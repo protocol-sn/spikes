@@ -1,0 +1,61 @@
+apiVersion: v1
+kind: Namespace 
+metadata:
+  name: spike-space
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: spike-space
+  name: reverse-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reverse-proxy
+  template:
+    metadata:
+      labels:
+        app: reverse-proxy
+    spec:
+      containers:
+        - name: reverse-proxy
+          image: reverse-proxy
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 6000  
+---  
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: spike-space
+  name: backend-one
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-one
+  template:
+    metadata:
+      labels:
+        app: backend-one
+    spec:
+      containers:
+        - name: backend-one
+          image: backend-one
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5000     
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: spike-space
+  name: proxy-service
+spec:
+  selector:
+    app: reverse-proxy
+  type: LoadBalancer
+  ports:
+    - protocol: "TCP"
+      port: 6000
