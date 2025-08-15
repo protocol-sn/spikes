@@ -23,15 +23,15 @@ spec:
           image: reverse-proxy
           imagePullPolicy: Never
           ports:
-            - containerPort: 6000  
----  
+            - name: http
+              containerPort: 5005
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: spike-space
   name: backend-one
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: backend-one
@@ -45,7 +45,82 @@ spec:
           image: backend-one
           imagePullPolicy: Never
           ports:
-            - containerPort: 5000     
+            - name: http
+              containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: spike-space
+  name: backend-one-service
+spec:
+  selector:
+    app: backend-one
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: spike-space
+  name: backend-two
+spec:
+  selector:
+    matchLabels:
+      app: backend-two
+  template:
+    metadata:
+      labels:
+        app: backend-two
+    spec:
+      containers:
+        - name: backend-two
+          image: backend-two
+          imagePullPolicy: Never
+          ports:
+            - name: http
+              containerPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: spike-space
+  name: keycloak-auth
+spec:
+  selector:
+    matchLabels:
+      app: keycloak-auth
+  template:
+    metadata:
+      labels:
+        app: keycloak-auth
+    spec:
+      containers:
+        - name: keycloak-auth
+          image: keycloak-auth
+          imagePullPolicy: Never
+          ports:
+          - name: http
+            containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: spike-space
+  name: backend-two-service
+spec:
+  selector:
+    app: backend-two
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      name: apis
+      port: 8080
+    - protocol: TCP
+      port: 8081
+      name: grpc
 ---
 apiVersion: v1
 kind: Service
@@ -58,4 +133,18 @@ spec:
   type: LoadBalancer
   ports:
     - protocol: "TCP"
-      port: 6000
+      port: 8080
+      targetPort: 5005
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: spike-space
+  name: keycloak-auth
+spec:
+  selector:
+    app: keycloak-auth
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8080

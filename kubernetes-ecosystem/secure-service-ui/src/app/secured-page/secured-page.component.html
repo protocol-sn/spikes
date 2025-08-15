@@ -1,0 +1,10 @@
+<app-navigation></app-navigation>
+<p>secured-page works!</p>
+<br/>
+<input type="button" (click)="doNoRoleCall()" value="Make request that requires authentication" >
+<br/>
+<app-response [body]="noRoleBody" [code]="noRoleCode"></app-response>
+<br/>
+<input type="button" (click)="doSpike2RoleCall()" value="Make request that requires authentication with a role" >
+<br/>
+<app-response [body]="spike2Body" [code]="spike2Code"></app-response>
