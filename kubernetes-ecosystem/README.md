@@ -19,12 +19,13 @@ This was created using Kubernetes 1.32.2 and a Docker Desktop cluster. It has no
    2. It is, however, a Docker image.
 7.  Build the image for the Keycloak server.
       1. This will build with a realm configured for this environment.
-      2. There is not a database set up for it.  
+      2. There is not a database set up for it.
 8. Finally, we apply the YAML files to create the deployments.
 9. The keycloak server will be the last to finish starting.
    1. Navigate to http://localhost:8080/auth/realms/spike-realm/.well-known/openid-configuration and wait for it to show the correct OIDC document.
 10. Navigate to localhost:4200 to see the angular UI.
     1. The login credentials are test-user:password
+11. When you're done use `./clean_ecosystem.sh` to clear out the containers and images.
 
 ## Explanation of features
 * Neither Micronaut service is exposed directly by Kubernetes. Only Backend One is proxied by nginx.
