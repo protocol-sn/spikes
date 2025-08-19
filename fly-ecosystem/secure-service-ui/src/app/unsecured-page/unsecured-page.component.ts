@@ -2,6 +2,7 @@ import {Component, inject} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ResponseComponent} from "../response/response.component";
 import {NavigationComponent} from "../navigation/navigation.component";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-unsecured-page',
@@ -22,7 +23,7 @@ export class UnsecuredPageComponent {
 
   doUnsecuredCall() {
     console.log("doing unsecured call...")
-    this.http.get("https://spike-reverse-proxy.fly.dev", {responseType: 'text', observe: 'response'})
+    this.http.get(environment.backendOne, {responseType: 'text', observe: 'response'})
       .subscribe(response => {
         this.unsecuredBody = response.body ?? '';
         this.unsecuredCode = response.status.toString()
@@ -31,16 +32,7 @@ export class UnsecuredPageComponent {
 
   request() {
     console.log("doing unsecured call...")
-    this.http.get("https://spike-reverse-proxy.fly.dev/request", {responseType: 'text', observe: 'response'})
-      .subscribe(response => {
-        this.requestBody = response.body ?? '';
-        this.requestCode = response.status.toString()
-      })
-  }
-
-  backendTwo() {
-    console.log("doing unsecured call...")
-    this.http.get("https://spike-reverse-proxy.fly.dev/", {responseType: 'text', observe: 'response'})
+    this.http.get(environment.backendOne + "/request", {responseType: 'text', observe: 'response'})
       .subscribe(response => {
         this.requestBody = response.body ?? '';
         this.requestCode = response.status.toString()

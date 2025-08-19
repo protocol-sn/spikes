@@ -5,6 +5,7 @@ import {AuthService} from "../auth.service";
 import {ResponseComponent} from "../response/response.component";
 import {catchError, map, of} from "rxjs";
 import {ApiService} from "../api.service";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-secured-page',
@@ -36,7 +37,7 @@ export class SecuredPageComponent implements OnInit {
 
   doSpike2RoleCall() {
     console.log("Doing spike2 role call...")
-    this.apiService.doSecureGET("https://spike-reverse-proxy.fly.dev/secured/spike")
+    this.apiService.doSecureGET(environment.backendOne + "/secured/spike")
       .pipe(
         map(response => {
           return {body: response.body ?? '', code: response.status.toString()}
@@ -52,7 +53,7 @@ export class SecuredPageComponent implements OnInit {
 
   doNoRoleCall() {
     console.log("Doing no role call...")
-    this.apiService.doSecureGET("https://spike-reverse-proxy.fly.dev/secured/")
+    this.apiService.doSecureGET(environment.backendOne + "/secured/")
       .pipe(
         map(response => {
           return {body: response.body ?? '', code: response.status.toString()}

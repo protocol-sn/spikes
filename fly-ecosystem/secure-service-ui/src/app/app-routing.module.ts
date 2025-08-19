@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import {HomeComponent} from "./home/home.component";
 import {SecuredPageComponent} from "./secured-page/secured-page.component";
 import {UnsecuredPageComponent} from "./unsecured-page/unsecured-page.component";
-// import {AuthGuard} from "./auth-guard";
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -11,7 +10,6 @@ const routes: Routes = [
   {
     path: 'secured',
     component: SecuredPageComponent,
-    // canActivate: [AuthGuard]
   },
   {
     path: 'unsecured',

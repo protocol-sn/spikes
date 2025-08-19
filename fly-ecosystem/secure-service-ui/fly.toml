@@ -7,6 +7,7 @@ app = 'secure-service-ui'
 primary_region = 'ord'
 
 [build]
+  dockerfile = 'Dockerfile.fly'
 
 [http_service]
   internal_port = 80

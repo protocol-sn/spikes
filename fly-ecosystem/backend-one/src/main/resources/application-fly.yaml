@@ -11,12 +11,12 @@ micronaut:
         signatures:
           jwks:
             keycloak:
-              url: http://keycloak-auth:8080/auth/realms/spike-realm/protocol/openid-connect/certs
+              url: http://spike-keycloak.flycast:80/auth/realms/spike-realm/protocol/openid-connect/certs
 
 grpc:
   channels:
     greeter:
-      address: http://backend-two:8081
+      address: http://backend-two.flycast:8080
       plaintext: true
   client:
     max-retry-attempts: 5
