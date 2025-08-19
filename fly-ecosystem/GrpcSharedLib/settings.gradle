@@ -1,0 +1,4 @@
+rootProject.name = 'GrpcSharedLib'
+include 'src:main:proto'
+findProject(':src:main:proto')?.name = 'proto'
+

@@ -1,0 +1,10 @@
+<app-navigation></app-navigation>
+<p>unsecured-page works!</p>
+
+<input type="button" (click)="doUnsecuredCall()" value="Do Hello Call to One"/>
+<br/>
+<app-response [body]="unsecuredBody" [code]="unsecuredCode"></app-response>
+<br/>
+<input type="button" (click)="request()" value="Have One make a gRPC call to Two"/>
+<br/>
+<app-response [body]="requestBody" [code]="requestCode"></app-response>
