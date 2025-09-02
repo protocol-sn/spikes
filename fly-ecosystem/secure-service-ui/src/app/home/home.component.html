@@ -1,0 +1,12 @@
+<app-navigation></app-navigation>
+<div>Welcome to home Route</div>
+
+<br />
+Is Authenticated: {{ authService.isAuthenticated()}}
+
+<div *ngFor="let claim of authService.getUserData() | keyvalue">
+  {{claim.key}}: {{claim.value}}
+</div>
+
+<input type="button" value="Login" (click)="authService.login()" />
+<input type="button" value="Logout" (click)="authService.logout()" />

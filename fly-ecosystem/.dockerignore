@@ -1,0 +1,216 @@
+# flyctl launch added from GrpcSharedLib/.gitignore
+GrpcSharedLib/**/.gradle
+GrpcSharedLib/**/build
+!GrpcSharedLib/**/gradle/wrapper/gradle-wrapper.jar
+!GrpcSharedLib/**/**/src/main/**/build
+!GrpcSharedLib/**/**/src/test/**/build
+
+### IntelliJ IDEA ###
+GrpcSharedLib/**/.idea/modules.xml
+GrpcSharedLib/**/.idea/jarRepositories.xml
+GrpcSharedLib/**/.idea/compiler.xml
+GrpcSharedLib/**/.idea/libraries
+GrpcSharedLib/**/*.iws
+GrpcSharedLib/**/*.iml
+GrpcSharedLib/**/*.ipr
+GrpcSharedLib/**/out
+!GrpcSharedLib/**/**/src/main/**/out
+!GrpcSharedLib/**/**/src/test/**/out
+
+### Eclipse ###
+GrpcSharedLib/**/.apt_generated
+GrpcSharedLib/**/.classpath
+GrpcSharedLib/**/.factorypath
+GrpcSharedLib/**/.project
+GrpcSharedLib/**/.settings
+GrpcSharedLib/**/.springBeans
+GrpcSharedLib/**/.sts4-cache
+GrpcSharedLib/**/bin
+!GrpcSharedLib/**/**/src/main/**/bin
+!GrpcSharedLib/**/**/src/test/**/bin
+
+### NetBeans ###
+GrpcSharedLib/nbproject/private
+GrpcSharedLib/nbbuild
+GrpcSharedLib/dist
+GrpcSharedLib/nbdist
+GrpcSharedLib/.nb-gradle
+
+### VS Code ###
+GrpcSharedLib/**/.vscode
+
+### Mac OS ###
+GrpcSharedLib/**/.DS_Store
+
+# flyctl launch added from GrpcSharedLib/.idea/.gitignore
+# Default ignored files
+GrpcSharedLib/.idea/shelf
+GrpcSharedLib/.idea/workspace.xml
+# Editor-based HTTP Client requests
+GrpcSharedLib/.idea/httpRequests
+# Datasource local storage ignored files
+GrpcSharedLib/.idea/dataSources
+GrpcSharedLib/.idea/dataSources.local.xml
+
+# flyctl launch added from angular-ui/.gitignore
+# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+
+# Compiled output
+angular-ui/dist
+angular-ui/tmp
+angular-ui/out-tsc
+angular-ui/bazel-out
+
+# Node
+angular-ui/node_modules
+angular-ui/**/npm-debug.log
+angular-ui/**/yarn-error.log
+
+# IDEs and editors
+angular-ui/**/.idea
+angular-ui/**/.project
+angular-ui/**/.classpath
+angular-ui/**/.c9
+angular-ui/**/*.launch
+angular-ui/**/.settings
+angular-ui/**/*.sublime-workspace
+
+# Visual Studio Code
+angular-ui/**/.vscode/*
+!angular-ui/**/.vscode/settings.json
+!angular-ui/**/.vscode/tasks.json
+!angular-ui/**/.vscode/launch.json
+!angular-ui/**/.vscode/extensions.json
+angular-ui/**/.history/*
+
+# Miscellaneous
+angular-ui/.angular/cache
+angular-ui/**/.sass-cache
+angular-ui/connect.lock
+angular-ui/coverage
+angular-ui/libpeerconnection.log
+angular-ui/**/testem.log
+angular-ui/typings
+
+# System files
+angular-ui/**/.DS_Store
+angular-ui/**/Thumbs.db
+
+# flyctl launch added from angular-ui/.idea/.gitignore
+# Default ignored files
+angular-ui/.idea/shelf
+angular-ui/.idea/workspace.xml
+# Editor-based HTTP Client requests
+angular-ui/.idea/httpRequests
+# Datasource local storage ignored files
+angular-ui/.idea/dataSources
+angular-ui/.idea/dataSources.local.xml
+
+# flyctl launch added from backend-one/.gitignore
+backend-one/**/Thumbs.db
+backend-one/**/.DS_Store
+backend-one/**/.gradle
+backend-one/**/build
+backend-one/**/target
+backend-one/**/out
+backend-one/**/.micronaut
+backend-one/**/.idea
+backend-one/**/*.iml
+backend-one/**/*.ipr
+backend-one/**/*.iws
+backend-one/**/.project
+backend-one/**/.settings
+backend-one/**/.classpath
+backend-one/**/.factorypath
+
+# flyctl launch added from backend-one/.idea/.gitignore
+# Default ignored files
+backend-one/.idea/shelf
+backend-one/.idea/workspace.xml
+# Editor-based HTTP Client requests
+backend-one/.idea/httpRequests
+# Datasource local storage ignored files
+backend-one/.idea/dataSources
+backend-one/.idea/dataSources.local.xml
+
+# flyctl launch added from backend-two/.gitignore
+backend-two/**/Thumbs.db
+backend-two/**/.DS_Store
+backend-two/**/.gradle
+backend-two/**/build
+backend-two/**/target
+backend-two/**/out
+backend-two/**/.micronaut
+backend-two/**/.idea
+backend-two/**/*.iml
+backend-two/**/*.ipr
+backend-two/**/*.iws
+backend-two/**/.project
+backend-two/**/.settings
+backend-two/**/.classpath
+backend-two/**/.factorypath
+
+# flyctl launch added from backend-two/.idea/.gitignore
+# Default ignored files
+backend-two/.idea/shelf
+backend-two/.idea/workspace.xml
+# Editor-based HTTP Client requests
+backend-two/.idea/httpRequests
+# Datasource local storage ignored files
+backend-two/.idea/dataSources
+backend-two/.idea/dataSources.local.xml
+
+# flyctl launch added from secure-service-ui/.gitignore
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+secure-service-ui/dist
+secure-service-ui/tmp
+secure-service-ui/out-tsc
+secure-service-ui/bazel-out
+
+# Node
+secure-service-ui/node_modules
+secure-service-ui/**/npm-debug.log
+secure-service-ui/**/yarn-error.log
+
+# IDEs and editors
+secure-service-ui/**/.idea
+secure-service-ui/**/.project
+secure-service-ui/**/.classpath
+secure-service-ui/**/.c9
+secure-service-ui/**/*.launch
+secure-service-ui/**/.settings
+secure-service-ui/**/*.sublime-workspace
+
+# Visual Studio Code
+secure-service-ui/**/.vscode/*
+!secure-service-ui/**/.vscode/settings.json
+!secure-service-ui/**/.vscode/tasks.json
+!secure-service-ui/**/.vscode/launch.json
+!secure-service-ui/**/.vscode/extensions.json
+secure-service-ui/**/.history/*
+
+# Miscellaneous
+secure-service-ui/.angular/cache
+secure-service-ui/**/.sass-cache
+secure-service-ui/connect.lock
+secure-service-ui/coverage
+secure-service-ui/libpeerconnection.log
+secure-service-ui/**/testem.log
+secure-service-ui/typings
+
+# System files
+secure-service-ui/**/.DS_Store
+secure-service-ui/**/Thumbs.db
+
+# flyctl launch added from secure-service-ui/.idea/.gitignore
+# Default ignored files
+secure-service-ui/.idea/shelf
+secure-service-ui/.idea/workspace.xml
+# Editor-based HTTP Client requests
+secure-service-ui/.idea/httpRequests
+# Datasource local storage ignored files
+secure-service-ui/.idea/dataSources
+secure-service-ui/.idea/dataSources.local.xml
+fly.toml

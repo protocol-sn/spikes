@@ -1,0 +1,23 @@
+# fly.toml app configuration file generated for secure-service-ui on 2025-08-16T20:59:46-05:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'secure-service-ui'
+primary_region = 'ord'
+
+[build]
+  dockerfile = 'Dockerfile.fly'
+
+[http_service]
+  internal_port = 80
+  force_https = true
+  auto_stop_machines = 'off'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
