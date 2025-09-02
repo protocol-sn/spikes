@@ -1,4 +1,4 @@
-FROM quay.io/keycloak/keycloak:25.0
+FROM quay.io/keycloak/keycloak:26.3.0
 
 ENV KC_METRICS_ENABLED=true
 ENV KC_HOSTNAME_STRICT=false
@@ -13,4 +13,4 @@ ENV KC_HOSTNAME=https://spike-reverse-proxy.fly.dev/auth
 
 COPY ecosystem.json opt/keycloak/data/import/ecosystem.json
 
-ENTRYPOINT ["/opt/keycloak/bin/kc.sh", "start", "--import-realm", "--optimized"]
+ENTRYPOINT ["/opt/keycloak/bin/kc.sh", "start", "--import-realm"]

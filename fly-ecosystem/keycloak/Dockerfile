@@ -1,4 +1,4 @@
-FROM quay.io/keycloak/keycloak:25.0
+FROM quay.io/keycloak/keycloak:26.3.0
 
 ENV KC_METRICS_ENABLED=true
 ENV KC_HOSTNAME_STRICT=false
