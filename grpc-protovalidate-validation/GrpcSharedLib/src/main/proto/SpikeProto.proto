@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+import "google/protobuf/timestamp.proto";
+
+option java_multiple_files = true;
+option java_package = "coop.stlma.tech.protocolsn.spike";
+option java_outer_classname = "SpikeCommProto";
+option objc_class_prefix = "HLW";
+
+package coop.stlma.tech.protocolsn.spike;
+
+// The greeting service definition.
+service Greeter {
+  // Sends a greeting
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+  rpc sendValidated (ValidatedRequest) returns (HelloReply) {}
+}
+
+message ValidatedRequest {
+  string uuidField = 1 [
+    (buf.validate.field).string.uuid = true
+  ];
+
+  repeated string stringListField = 2 [
+    (buf.validate.field).repeated.min_items = 1,
+    (buf.validate.field).repeated.max_items = 10,
+
+    (buf.validate.field).cel = {
+      id: "stringListField.allUnique"
+      message: "All strings in the list must be unique"
+      expression: "this.unique()"
+    }
+  ];
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings
+message HelloReply {
+  string message = 1;
+}
