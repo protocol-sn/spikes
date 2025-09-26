@@ -3,8 +3,6 @@ package coop.stlma.tech.protocolsn.spike;
 import io.grpc.stub.StreamObserver;
 import jakarta.inject.Singleton;
 
-import java.util.stream.Collectors;
-
 @Singleton
 public class GreetingEndpoint extends GreeterGrpc.GreeterImplBase {
 

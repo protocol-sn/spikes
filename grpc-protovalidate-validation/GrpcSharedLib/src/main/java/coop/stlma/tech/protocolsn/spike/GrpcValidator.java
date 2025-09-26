@@ -62,22 +62,12 @@ public class GrpcValidator implements ServerInterceptor {
                 } else {
                     Status status = Status.Code.INVALID_ARGUMENT.toStatus()
                             .withDescription(validationResult.getViolations().stream()
-                                    .map(violation -> {
-                                        return violation.toProto().getMessage();
-                                    })
+                                    .map(violation -> violation.toProto().getMessage())
                                     .collect(Collectors.joining(",")));
-//                    .setMessage(Code.INVALID_ARGUMENT.getValueDescriptor().getName())
-//                            .addDetails(Any.pack(validationResult.toProto()))
-//                            .build();
                     StatusRuntimeException sre = status.asRuntimeException();
                     call.close(sre.getStatus(), new Metadata());
                 }
             } catch (ValidationException e) {
-//                Status status = Status.newBuilder()
-//                        .setCode(Code.INTERNAL_VALUE)
-//                        .setMessage(e.getMessage())
-//                        .build();
-
                 throw Status.fromThrowable(e).asRuntimeException();
             }
         }
