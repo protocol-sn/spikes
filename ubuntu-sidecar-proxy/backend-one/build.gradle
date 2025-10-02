@@ -1,0 +1,74 @@
+plugins {
+    id("io.micronaut.application") version "4.5.4"
+    id("com.gradleup.shadow") version "8.3.7"
+    id("io.micronaut.aot") version "4.5.4"
+}
+
+version = "0.1"
+group = "coop.stlma.tech.protocolsn.spike"
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation("coop.stlma.tech.protocolsn.spike:GrpcSharedLib:0.1")
+
+    annotationProcessor("io.micronaut:micronaut-http-validation")
+    annotationProcessor("io.micronaut.serde:micronaut-serde-processor")
+    annotationProcessor("io.micronaut.security:micronaut-security-annotations")
+    implementation("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
+    runtimeOnly("org.yaml:snakeyaml")
+    implementation("io.micronaut.serde:micronaut-serde-jackson")
+    implementation("io.micronaut:micronaut-http-client")
+    implementation("io.micronaut.security:micronaut-security-jwt")
+    implementation("io.micronaut.security:micronaut-security-oauth2")
+    runtimeOnly("ch.qos.logback:logback-classic")
+    aotPlugins("io.micronaut.security:micronaut-security-aot")
+    testImplementation("io.micronaut:micronaut-http-client")
+
+    implementation("io.micronaut.grpc:micronaut-grpc-client-runtime")
+    implementation("io.micronaut.reactor:micronaut-reactor")
+}
+
+
+application {
+    mainClass = "coop.stlma.tech.protocolsn.spike.Application"
+}
+java {
+    sourceCompatibility = JavaVersion.toVersion("21")
+    targetCompatibility = JavaVersion.toVersion("21")
+}
+
+
+graalvmNative.toolchainDetection = false
+
+micronaut {
+    runtime("netty")
+    testRuntime("junit5")
+    processing {
+        incremental(true)
+        annotations("coop.stlma.protocolsn.spike.*")
+    }
+    aot {
+        // Please review carefully the optimizations enabled below
+        // Check https://micronaut-projects.github.io/micronaut-aot/latest/guide/ for more details
+        optimizeServiceLoading = false
+        convertYamlToJava = false
+        precomputeOperations = true
+        cacheEnvironment = true
+        optimizeClassLoading = true
+        deduceEnvironment = true
+        optimizeNetty = true
+        replaceLogbackXml = true
+    }
+}
+
+
+tasks.named("dockerfileNative") {
+    jdkVersion = "21"
+}
+
+

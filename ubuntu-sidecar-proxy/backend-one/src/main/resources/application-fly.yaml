@@ -1,0 +1,26 @@
+micronaut:
+  server:
+    cors:
+      enabled: true
+  security:
+    endpoints:
+      logout:
+        get-allowed: true
+    token:
+      jwt:
+        signatures:
+          jwks:
+            keycloak:
+              url: http://spike-keycloak.flycast:80/auth/realms/spike-realm/protocol/openid-connect/certs
+
+grpc:
+  channels:
+    greeter:
+      address: http://backend-two.flycast:8080
+      plaintext: true
+  client:
+    max-retry-attempts: 5
+
+logger:
+  levels:
+    io.micronaut.security: DEBUG

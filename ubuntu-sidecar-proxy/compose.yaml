@@ -1,0 +1,62 @@
+services:
+  reverse-proxy:
+    image: "spike-proxy"
+    container_name: "reverse-proxy"
+    restart: "always"
+    networks: 
+      - spike-network
+    ports:
+      - "5005:5005"
+    depends_on:
+      - keycloak-auth
+      - backend-one
+      - backend-two
+  keycloak-auth:
+    image: keycloak-auth
+    ports:
+      - "9080:8080"
+    depends_on:
+      - db
+    networks:
+      - spike-network
+  db:
+    image: postgres
+    ports:
+      - "5443:5432"
+    restart: always
+    user: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: spike
+    volumes:
+      - ../keycloak-interaction/keycloak/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    networks:
+      - spike-network
+  backend-one:
+    image: backend-one
+    extra_hosts:
+      - "keycloak.psn.local=172.17.0.1"
+    ports:
+      - "8080:8080"
+    networks:
+      - spike-network
+    depends_on:
+      - keycloak-auth
+  backend-two:
+    image: backend-two
+    extra_hosts:
+      - "keycloak.psn.local=172.17.0.1"
+    ports:
+      - "8081:8080"
+    networks:
+      - spike-network
+    depends_on:
+      - keycloak-auth
+  
+  
+networks:
+  spike-network:
+    driver: bridge
+    name: spike-network
+    external: false
