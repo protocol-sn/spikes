@@ -1,0 +1,33 @@
+micronaut:
+  application:
+    name: spike-cassandra
+
+cassandra:
+  default:
+    basic:
+      session-name: defaultSession
+      load-balancing-policy:
+        local-datacenter: datacenter1
+      contact-points:
+        - localhost:9042
+    advanced:
+      auth-provider:
+        class: PlainTextAuthProvider
+        username: cassandra
+        password: cassandra
+      ssl-engine-factory: DefaultSslEngineFactory
+      control-connection:
+        schema-agreement:
+          timout: 20
+
+flyway:
+  datasources:
+    default:
+      enabled: true
+      url: jdbc:cassandra://localhost:9042/spike_keyspace?localdatacenter=datacenter1
+      user: cassandra
+      password: cassandra
+      driver-class-name: com.ing.data.cassandra.jdbc.CassandraDriver
+      locations: classpath:db/migrations
+      sql-migration-suffixes: .cql
+      default-schema: spike_keyspace

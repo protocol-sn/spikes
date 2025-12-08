@@ -1,0 +1,12 @@
+cassandra:
+  default:
+    advanced:
+      metadata:
+        schema:
+          enabled:
+            false
+
+flyway:
+  datasources:
+    default:
+      enabled: false
