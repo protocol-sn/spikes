@@ -1,0 +1,76 @@
+plugins {
+    id("io.micronaut.application") version "4.6.1"
+    id("com.gradleup.shadow") version "8.3.9"
+    id("io.micronaut.aot") version "4.6.1"
+}
+
+version = "0.1"
+group = "coop.stmla.tech.protocolsn.spike"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    annotationProcessor("io.micronaut:micronaut-http-validation")
+    annotationProcessor("io.micronaut.serde:micronaut-serde-processor")
+    implementation("io.micronaut.cassandra:micronaut-cassandra")
+    implementation("io.micronaut.serde:micronaut-serde-jackson")
+    compileOnly("io.micronaut:micronaut-http-client")
+    runtimeOnly("ch.qos.logback:logback-classic")
+    testImplementation("io.micronaut:micronaut-http-client")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    runtimeOnly("org.yaml:snakeyaml")
+
+    implementation("com.ing.data:cassandra-jdbc-wrapper:4.13.0")
+
+    implementation("io.micronaut.flyway:micronaut-flyway")
+    implementation("org.flywaydb:flyway-database-cassandra:11.18.0")
+
+    testImplementation("org.testcontainers:cassandra")
+    testImplementation("org.testcontainers:testcontainers")
+    testImplementation("org.testcontainers:junit-jupiter")
+
+    //This dependency is used for metrics in the Cassandra driver. For reasons that are not clear to me you will get a
+    //ClassNotFound if you use a Cluster builder, which we do during the repository test, if this is not included as
+    //a dependency even when metrics have not been referenced
+    testImplementation("com.codahale.metrics:metrics-core:3.0.2")
+}
+
+
+application {
+    mainClass = "coop.stmla.tech.protocolsn.spike.Application"
+}
+java {
+    sourceCompatibility = JavaVersion.toVersion("21")
+    targetCompatibility = JavaVersion.toVersion("21")
+}
+
+
+graalvmNative.toolchainDetection = false
+
+micronaut {
+    runtime("netty")
+    testRuntime("junit5")
+    processing {
+        incremental(true)
+        annotations("coop.stmla.tech.protocolsn.spike.*")
+    }
+    aot {
+        // Please review carefully the optimizations enabled below
+        // Check https://micronaut-projects.github.io/micronaut-aot/latest/guide/ for more details
+        optimizeServiceLoading = false
+        convertYamlToJava = false
+        precomputeOperations = true
+        cacheEnvironment = true
+        optimizeClassLoading = true
+        deduceEnvironment = true
+        optimizeNetty = true
+        replaceLogbackXml = true
+    }
+}
+
+
+tasks.named("dockerfileNative") {
+    jdkVersion = "21"
+}
