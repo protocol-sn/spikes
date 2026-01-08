@@ -24,10 +24,11 @@ flyway:
   datasources:
     default:
       enabled: true
-      url: jdbc:cassandra://localhost:9042/spike_keyspace?localdatacenter=datacenter1
+      url: jdbc:cassandra://localhost:9042?localdatacenter=datacenter1
       user: cassandra
       password: cassandra
       driver-class-name: com.ing.data.cassandra.jdbc.CassandraDriver
       locations: classpath:db/migrations
       sql-migration-suffixes: .cql
+#      default-schema: spike_default
       default-schema: spike_keyspace
