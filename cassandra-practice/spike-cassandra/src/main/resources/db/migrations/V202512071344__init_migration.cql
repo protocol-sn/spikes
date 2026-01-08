@@ -1,8 +1,13 @@
-CREATE KEYSPACE IF NOT EXISTS SPIKE_KEYSPACE
+ALTER KEYSPACE SPIKE_KEYSPACE
 WITH REPLICATION = {
     'class': 'SimpleStrategy',
-    'replication_factor': 1
+    'replication_factor': 4
 };
+-- CREATE KEYSPACE IF NOT EXISTS SPIKE_KEYSPACE
+-- WITH REPLICATION = {
+--     'class': 'SimpleStrategy',
+--     'replication_factor': 4
+-- };
 
 CREATE TABLE SPIKE_KEYSPACE.TABLE_ONE (
     table_id uuid PRIMARY KEY,

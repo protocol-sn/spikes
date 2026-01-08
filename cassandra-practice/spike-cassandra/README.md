@@ -16,7 +16,14 @@ https://micronaut-projects.github.io/micronaut-cassandra/latest/guide/
    cassandra  | INFO  [NonPeriodicTasks:1] 2025-12-08 22:24:29,214 BigFormat.java:231 - Deleting sstable: /opt/cassandra/data/data/system/local-7ad54392bcdd35a684174e047860b377/nb-2-big
     ```
    2. On the first startup the final line will actually be creation of the superuser role
-3. In the root directory for this project run `./gradlew run` and start up the server.
+3. Noting autocreation of keyspaces
+   1. If you are running this exactly as you pulled it, flyway will create the SPIKE_KEYSPACE keyspace because this is set as the `default-schema` value.
+      1. This will be created with a replication factor of 1, which is not necessarily what we want.
+      2. The first flyway migration will alter this, in this case to 4, to demonstrate that this is possible.
+   2. A different `default-schema` field is commented out in application.yaml and a CREATE KEYSPACE command is commented out in the first migration file.
+      1. If you swap these out, flyway will create a SPIKE_DEFAULT keyspace tha will exist only to allow it to connect and hold the flyway migration table.
+      2. It will then run the migrations, which create our desired schema.
+4. In the root directory for this project run `./gradlew run` and start up the server.
    1. The endpoint to insert a record is a POST `/`. Request body is below and  the response will include the created object including the generated ID
    ```
    {
